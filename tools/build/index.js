@@ -68,7 +68,7 @@ module.exports = class Build {
                 rules: [
                     {
                         test: /\.js$/,
-                        loader: "babel-loader",
+                        loader: path.resolve(__dirname, "../../", "node_modules", "babel-loader"),
                         options: {
                             presets: [require("babel-preset-env")]
                         }
