@@ -30,7 +30,8 @@ module.exports = class Build {
         // Decode command line args
         const opts = parseCommandLine([
             { name: "entry", type: String, defaultOption: true },
-            { name: "output", type: String }
+            { name: "output", type: String },
+            { name: "var", type: String, multiple: true }
         ], { argv })
 
         // Ensure all args are available
@@ -85,7 +86,7 @@ module.exports = class Build {
                 ]
             },
             plugins: [
-                new HFWebpackPlugin()
+                new HFWebpackPlugin({ vars: opts.var })
             ]
         })
 
