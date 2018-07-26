@@ -50,6 +50,15 @@ module.exports = class Build {
 
         }
 
+        // Determine which path to babel-loader to use. When installed as part of someone's package, we can use the
+        // plain 'babel-loader'. But when run with npx, we need to use the absolute path.
+        var babelLoaderPath = "babel-loader"
+        try {
+            require(babelLoaderPath)
+        } catch (e) {
+            babelLoaderPath = path.resolve(__dirname, "../../", "node_modules", "babel-loader")
+        }
+
         // Start
         console.log("Building...")
         var stats = await webpackAsync({
@@ -68,7 +77,7 @@ module.exports = class Build {
                 rules: [
                     {
                         test: /\.js$/,
-                        loader: path.resolve(__dirname, "../../", "node_modules", "babel-loader"),
+                        loader: babelLoaderPath,
                         options: {
                             presets: [require("babel-preset-env")]
                         }

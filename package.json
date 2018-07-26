@@ -1,11 +1,11 @@
 {
   "name": "hifi-tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of tools for creating High Fidelity scripts",
   "main": "tools/index.js",
   "bin": "cli.js",
   "scripts": {
-    "test": "node ./cli.js test/colorchanger.js"
+    "test": "node ./cli.js build ./test/colorchanger.js"
   },
   "keywords": [
     "hifi",
