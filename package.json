@@ -1,6 +1,6 @@
 {
   "name": "hifi-tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of tools for creating High Fidelity scripts",
   "main": "tools/index.js",
   "bin": "cli.js",

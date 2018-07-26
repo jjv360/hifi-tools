@@ -52,11 +52,11 @@ module.exports = class Build {
 
         // Determine which path to babel-loader to use. When installed as part of someone's package, we can use the
         // plain 'babel-loader'. But when run with npx, we need to use the absolute path.
-        var babelLoaderPath = "babel-loader"
+        var babelLoaderPath = path.resolve(__dirname, "../../", "node_modules", "babel-loader")
         try {
             require(babelLoaderPath)
         } catch (e) {
-            babelLoaderPath = path.resolve(__dirname, "../../", "node_modules", "babel-loader")
+            babelLoaderPath = "babel-loader"
         }
 
         // Start
