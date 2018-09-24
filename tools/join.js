@@ -12,6 +12,7 @@ module.exports = class Join {
     for specifying the "main" class used by the High Fidelity entity script.
 
     hifi-tools join /path/to/my/code/*.js --entry=MyClass
+    hifi-tools join /path/to/my/code/*.js --entry=MyClass --construct
     hifi-tools join /path/to/my/code/*.js --entry=MyClass --output=/path/to/joined.js
 
     `}
@@ -22,6 +23,7 @@ module.exports = class Join {
         const opts = parseCommandLine([
             { name: "input", type: String, defaultOption: true },
             { name: "entry", type: String },
+            { name: "construct", type: Boolean },
             { name: "output", type: String }
         ], { argv })
 
@@ -71,7 +73,9 @@ ${fileContent}
         }
 
         // If we have the entry class name, output it at the end
-        if (opts.entry)
+        if (opts.entry && opts.construct)
+            all += ";new " + opts.entry + "()"
+        else if (opts.entry)
             all += ";(" + opts.entry + ")"
 
         // Done, get output file name
