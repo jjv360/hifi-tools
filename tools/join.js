@@ -81,7 +81,7 @@ ${fileContent}
         // Done, get output file name
         let outFile = opts.output
         if (!outFile && opts.entry)
-            outFile = opts.entry + ".js"
+            outFile = opts.entry + ".joined.js"
 
         if (!outFile)
             outFile = "joined.js"
