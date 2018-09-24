@@ -10,6 +10,10 @@ const parseCommandLine = require("command-line-args")
 const mainOptions = parseCommandLine([ {name: "command", defaultOption: true} ], { stopAtFirstUnknown: true })
 const argv = mainOptions._unknown || []
 
+// Special case: If no tool was specified, use the about tool
+if (!mainOptions.command)
+    mainOptions.command = "about"
+
 // Load tool
 const tools = require("./tools/index.js")
 const tool = tools[mainOptions.command]
@@ -28,7 +32,7 @@ if (tool) {
 } else {
 
     // Tool not found
-    console.log("The tool '" + mainOptions.command + "' was not found.")
+    if (mainOptions.command != "list") console.log("The tool '" + mainOptions.command + "' was not found.")
     console.log("")
     console.log("  Format: ")
     console.log("")
@@ -36,7 +40,7 @@ if (tool) {
     console.log("")
     console.log("  List of available tools: ")
     console.log("")
-    for (var name in tools)
+    for (var name of Object.keys(tools).sort())
         console.log("    " + name + " : " + tools[name].shortDescription)
 
     console.log("")

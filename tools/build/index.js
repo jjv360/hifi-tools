@@ -24,6 +24,15 @@ function webpackAsync(config) {
 module.exports = class Build {
 
     static get shortDescription() { return "Compile your code into a High Fidelity-ready bundle" }
+    static get longDescription() { return `
+
+    Compiles your script source using Webpack and Babel, allowing you to use ES6 features and imports.
+
+    hifi-tools build ./myscript.js
+      - or -
+    hifi-tools build ./myscript.js --output ./bundle.js
+
+    `}
 
     static async fromCommandLine(argv) {
 
