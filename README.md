@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/status-ready-brightgreen.svg)
+
 # High Fidelity Tools
 
 This is a collection of tools for High Fidelity to make the process of creating scripts easier.
